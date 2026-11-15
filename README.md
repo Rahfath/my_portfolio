@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Portfolio Website
 
-## Getting Started
+A minimal, editorial personal portfolio website implemented in Next.js (App Router), TypeScript, and Tailwind CSS v4, built directly from the Figma design specification.
 
-First, run the development server:
+## 🎨 Design Tokens (Theme Customization)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+All theme colors and font tokens are defined in a single source of truth in [`src/app/globals.css`](src/app/globals.css):
+
+```css
+:root {
+  --color-background: #F8F6F1; /* Warm linen canvas */
+  --color-foreground: #1C1F1A; /* Primary charcoal/ink text */
+  --color-accent: #C73013;     /* Warm vermilion accent */
+  --color-muted: #5E5F5A;      /* Subtext and secondary labels */
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Components consume these variables via Tailwind utility classes (`bg-background`, `text-foreground`, `text-accent`, `text-muted`, `font-display`, `font-sans`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📝 Updating Portfolio Content
 
-## Learn More
+Content is decoupled from UI components and lives inside the `src/data/` folder:
 
-To learn more about Next.js, take a look at the following resources:
+- **Personal Info & Navigation**: Edit [`src/data/personal.ts`](src/data/personal.ts) (Name, tagline, contact email, navigation links).
+- **Projects ("A few good apps.")**: Edit [`src/data/projects.ts`](src/data/projects.ts) (Titles, descriptions, URLs).
+- **Tech Stack ("Tech stack.")**: Edit [`src/data/techStack.ts`](src/data/techStack.ts) (Categories and technology items).
+- **Skills**: Edit [`src/data/skills.ts`](src/data/skills.ts) (Skill items list).
+- **Work Experience ("Along the way.")**: Edit [`src/data/experience.ts`](src/data/experience.ts) (Companies, roles, timelines).
+- **Education ("Education.")**: Edit [`src/data/education.ts`](src/data/education.ts) (Institutions, degrees, fields, timelines, highlights).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🏗️ Project Architecture
 
-## Deploy on Vercel
+```
+src/
+├── app/
+│   ├── globals.css      # Theme tokens & CSS variables
+│   ├── layout.tsx       # Root layout, next/font optimization & SEO metadata
+│   └── page.tsx         # Page assembly and section orchestration
+├── components/
+│   ├── sections/        # Section components (Intro, Projects, Skills, Experience, Contact, Navbar)
+│   └── ui/              # Small reusable primitives (Container, Heading, Section, AnimatedFade)
+├── data/                # Data sources for all content
+├── lib/                 # Utility functions (cn)
+└── types/               # TypeScript interfaces
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🚀 Development & Build
+
+```bash
+# Start local development server
+npm run dev
+
+# Run ESLint validation
+npm run lint
+
+# Production build check
+npm run build
+```
