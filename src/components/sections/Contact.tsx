@@ -24,38 +24,43 @@ export const Contact: React.FC = () => {
             </Link>
           </div>
 
-          {(personalInfo.github || personalInfo.linkedin || personalInfo.phone) && (
-            <div className="flex flex-wrap items-center gap-6 sm:gap-8 pt-2 sm:pt-4 text-sm sm:text-base font-medium text-muted">
-              {personalInfo.github && (
-                <a
-                  href={personalInfo.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors duration-200"
-                >
-                  GitHub ↗
-                </a>
-              )}
-              {personalInfo.linkedin && (
-                <a
-                  href={personalInfo.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors duration-200"
-                >
-                  LinkedIn ↗
-                </a>
-              )}
-              {personalInfo.phone && (
-                <a
-                  href={`tel:${personalInfo.phone.replace(/\s+/g, "")}`}
-                  className="hover:text-foreground transition-colors duration-200"
-                >
-                  {personalInfo.phone}
-                </a>
-              )}
-            </div>
-          )}
+          <div className="flex flex-wrap items-center gap-6 sm:gap-8 pt-2 sm:pt-4 text-sm sm:text-base font-medium text-muted">
+            <a
+              href="/Rahfath-Sarose-CV.pdf"
+              download
+              className="text-accent underline underline-offset-4 decoration-accent/60 hover:decoration-accent hover:opacity-80 transition-all duration-200"
+            >
+              Download CV
+            </a>
+            {personalInfo.github && (
+              <a
+                href={personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground transition-colors duration-200"
+              >
+                GitHub ↗
+              </a>
+            )}
+            {personalInfo.linkedin && (
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground transition-colors duration-200"
+              >
+                LinkedIn ↗
+              </a>
+            )}
+            {personalInfo.phone && (
+              <a
+                href={`tel:${personalInfo.phone.replace(/\s+/g, "")}`}
+                className="hover:text-foreground transition-colors duration-200"
+              >
+                {personalInfo.phone}
+              </a>
+            )}
+          </div>
         </div>
       </AnimatedFade>
     </Section>

@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+
 const fontDisplay = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-display",
@@ -45,7 +47,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#F8F6F1",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F8F6F1" },
+    { media: "(prefers-color-scheme: dark)", color: "#141613" },
+  ],
 };
 
 export default function RootLayout({
@@ -56,10 +61,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${fontDisplay.variable} ${fontSans.variable} scroll-smooth`}
     >
       <body className="bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-background min-h-screen">
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

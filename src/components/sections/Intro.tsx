@@ -16,9 +16,20 @@ export const Intro: React.FC = () => {
           </Heading>
 
           <div className="flex justify-start md:justify-end pt-2 md:pt-4">
-            <p className="text-muted text-[clamp(1rem,2vw,1.1875rem)] leading-relaxed max-w-md font-normal">
-              {personalInfo.tagline}
-            </p>
+            <div className="max-w-md space-y-3 sm:space-y-4">
+              <p className="text-muted text-[clamp(1rem,2vw,1.1875rem)] leading-relaxed font-normal">
+                {personalInfo.tagline}
+              </p>
+              <div>
+                <a
+                  href="/Rahfath-Sarose-CV.pdf"
+                  download
+                  className="inline-block text-accent text-sm sm:text-base font-medium underline underline-offset-4 decoration-accent/60 hover:decoration-accent hover:opacity-80 transition-all duration-200"
+                >
+                  Download CV
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </AnimatedFade>

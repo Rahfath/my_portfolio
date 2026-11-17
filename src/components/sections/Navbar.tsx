@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { personalInfo } from "@/data/personal";
 import { navLinks } from "@/data/navLinks";
 import { Container } from "@/components/ui/Container";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -70,57 +71,63 @@ export const Navbar: React.FC = () => {
             {personalInfo.name}
           </Link>
 
-          {/* Desktop Navigation (md and up) */}
-          <ul className="hidden md:flex items-center gap-8 lg:gap-10">
-            {navLinks.map((link) => (
-              <li key={link.label}>
-                <Link
-                  href={link.href}
-                  className="text-foreground hover:text-accent transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm py-1"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {/* Right Navigation & Theme Controls */}
+          <div className="flex items-center gap-3 sm:gap-4 md:gap-8 lg:gap-10">
+            {/* Desktop Navigation (md and up) */}
+            <ul className="hidden md:flex items-center gap-8 lg:gap-10">
+              {navLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-foreground hover:text-accent transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm py-1"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-          {/* Mobile Hamburger / Close Toggle Button */}
-          <button
-            type="button"
-            onClick={() => setIsOpen((prev) => !prev)}
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isOpen}
-            aria-controls="mobile-navigation"
-            className="md:hidden flex items-center justify-center w-10 h-10 -mr-2 text-foreground hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md transition-colors"
-          >
-            <span className="sr-only">
-              {isOpen ? "Close menu" : "Open menu"}
-            </span>
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-              aria-hidden="true"
+            {/* Theme Toggle - Minimal text label in matching typography */}
+            <ThemeToggle />
+
+            {/* Mobile Hamburger / Close Toggle Button */}
+            <button
+              type="button"
+              onClick={() => setIsOpen((prev) => !prev)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
+              className="md:hidden flex items-center justify-center w-10 h-10 -mr-2 text-foreground hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md transition-colors"
             >
-              {isOpen ? (
-                // Close (X) icon
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                // Hamburger icon
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 7h16M4 12h16M4 17h16"
-                />
-              )}
-            </svg>
-          </button>
+              <span className="sr-only">
+                {isOpen ? "Close menu" : "Open menu"}
+              </span>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+                aria-hidden="true"
+              >
+                {isOpen ? (
+                  // Close (X) icon
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  // Hamburger icon
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 7h16M4 12h16M4 17h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
         </nav>
       </Container>
 

@@ -1,11 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  /* Color tokens extracted directly from Figma */
+  /* Color tokens extracted directly from Figma (Light mode) */
   --color-background: #F8F6F1;
   --color-foreground: #1C1F1A;
   --color-accent: #C73013;
   --color-muted: #5E5F5A;
+}
+
+.dark,
+[data-theme="dark"] {
+  /* Color tokens for Dark mode maintaining Figma palette warm feel and high readability */
+  --color-background: #141613;
+  --color-foreground: #F4F2EC;
+  --color-accent: #EB5437;
+  --color-muted: #9E9F98;
 }
 
 @theme {
@@ -32,6 +41,15 @@ body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+header,
+footer,
+nav,
+section,
+main {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 ::selection {
